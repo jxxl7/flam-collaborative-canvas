@@ -1,0 +1,793 @@
+/* ============================================
+   PROFESSIONAL COLLABORATIVE CANVAS UI
+   Clean, Modern, Business-Focused Design
+   ============================================ */
+
+/* CSS Variables for Professional Theme */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary-color: #64748b;
+  --accent-color: #0ea5e9;
+  --success-color: #10b981;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background: var(--background);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Header with Logo */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* User Panel */
+.user-panel {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 260px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+  z-index: 90;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.user-panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--border-radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.user-item:hover {
+  background: #f8fafc;
+  border-color: var(--primary-color);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.user-item.own-user {
+  background: #eff6ff;
+  border-color: var(--primary-color);
+  border-width: 1.5px;
+}
+
+.user-item.user-drawing {
+  border-color: var(--accent-color);
+  background: #f0f9ff;
+}
+
+@keyframes user-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* User Avatar */
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.user-icon {
+  font-size: 18px;
+  z-index: 1;
+}
+
+.user-crown {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  font-size: 12px;
+  z-index: 2;
+  background: var(--surface);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-activity-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  animation: activity-pulse 2s ease-in-out infinite;
+}
+
+@keyframes activity-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* User Info */
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.user-item.own-user .user-name {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.user-tool-icon {
+  font-size: 14px;
+  opacity: 0.6;
+  color: var(--text-secondary);
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.status-text {
+  font-weight: 400;
+}
+
+/* Main Content */
+.main-content {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 260px; /* Space for user panel */
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--card-shadow);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Tool Buttons */
+.tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+  position: relative;
+}
+
+.tool-btn:hover {
+  background: #f8fafc;
+  border-color: var(--primary-color);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.tool-btn:active {
+  transform: scale(0.98);
+}
+
+.tool-btn-active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.tool-btn-active .tool-label {
+  color: white;
+}
+
+.tool-btn-active .tool-icon {
+  filter: brightness(0) invert(1);
+}
+
+.tool-icon {
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.tool-icon-svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  opacity: 0.8;
+}
+
+.tool-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tool-btn-active .tool-label {
+  color: white;
+}
+
+/* Color Picker */
+.color-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.color-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.color-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.color-preview {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease;
+  background: var(--current-color, var(--primary-color));
+}
+
+.color-preview:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Stroke Width Slider */
+.slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.slider-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stroke-slider {
+  width: 120px;
+  height: 8px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.stroke-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.stroke-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.stroke-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.stroke-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.size-preview {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 2px solid var(--surface);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+.size-preview:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Canvas Container */
+.canvas-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: var(--border-radius);
+  cursor: crosshair;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ============================================
+   BRUSH PREVIEW STYLES
+   ============================================ */
+
+.brush-preview {
+  position: absolute;
+  pointer-events: none;
+  z-index: 999;
+  transition: transform 0.05s ease-out, opacity 0.2s;
+  border: 2px solid;
+  box-sizing: border-box;
+  /* Ensure it doesn't block canvas events */
+  touch-action: none;
+}
+
+/* Circle preview for brush */
+.brush-preview-circle {
+  border-radius: 50%;
+}
+
+/* Square preview for eraser */
+.brush-preview.eraser-preview {
+  border-radius: 4px;
+  border-style: dashed;
+}
+
+/* Drawing state - subtle highlight */
+.brush-preview.drawing {
+  box-shadow: 0 0 0 2px var(--preview-color, var(--primary-color));
+  transform: scale(1.05);
+}
+
+/* ============================================
+   CURSOR LAYER & STYLES
+   ============================================ */
+
+.cursor-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Local user's cursor */
+.my-cursor {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--userColor, var(--primary-color));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--surface);
+  font-size: 16px;
+  font-weight: 500;
+  transition: left 0.1s ease-out, top 0.1s ease-out, transform 0.2s ease;
+  transform-origin: center;
+  will-change: left, top, transform;
+}
+
+.my-cursor.drawing {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  transform: scale(1.1);
+}
+
+.cursor-label {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  margin-top: 4px;
+  box-shadow: var(--card-shadow);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.15s ease-out;
+}
+
+.cursor-label.drawing {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+@keyframes label-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+/* Remote cursor base */
+.remote-cursor {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--remoteColor, var(--accent-color));
+  border: 2px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.1s ease-out, top 0.1s ease-out, opacity 0.3s, transform 0.2s;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  will-change: left, top, transform;
+  overflow: visible;
+}
+
+.remote-cursor-icon {
+  font-size: 12px;
+  line-height: 1;
+  z-index: 1;
+  color: white;
+}
+
+.remote-cursor.drawing {
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+  transform: scale(1.1);
+}
+
+.remote-cursor.idle {
+  opacity: 0.5;
+}
+
+.remote-cursor.fade-out {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.remote-label {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: var(--card-shadow);
+  transition: all 0.15s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label-username {
+  font-weight: 500;
+}
+
+.label-tool {
+  font-size: 10px;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.label-status {
+  font-size: 9px;
+  opacity: 0.7;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.remote-label.drawing {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .main-content {
+    padding-right: 20px;
+  }
+
+  .user-panel {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 600px;
+  margin: 20px auto;
+  }
+
+  .toolbar {
+    padding: 15px 20px;
+  }
+
+  .tool-btn {
+    min-width: 80px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .logo-text {
+    font-size: 22px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .main-content {
+    padding-top: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .toolbar {
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .tool-btn {
+    min-width: 70px;
+    padding: 10px 12px;
+  }
+
+  .tool-icon {
+    font-size: 24px;
+  }
+
+  .tool-label {
+    font-size: 11px;
+  }
+
+  .canvas-container {
+    padding: 10px;
+  }
+
+  canvas {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tool-btn {
+    flex-direction: row;
+    justify-content: center;
+    min-width: auto;
+  }
+
+  .slider-wrapper {
+    width: 100%;
+  }
+
+  .stroke-slider {
+    width: 100%;
+  }
+}

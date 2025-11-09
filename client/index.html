@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collaboro Canvas - Collaborative Drawing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header with Logo -->
+  <header class="header">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">Collaboro Canvas</span>
+    </div>
+  </header>
+
+  <!-- User Panel -->
+  <aside class="user-panel">
+    <h3 class="user-panel-title">Online Users</h3>
+    <div id="users-list" class="users-list">
+      <!-- Users will be added dynamically -->
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <!-- Brush Button -->
+      <button id="brush" class="tool-btn tool-btn-active" title="Brush">
+        <svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.71 4.63L19.37 3.29C19 2.9 18.35 2.9 17.96 3.29L9 12.25L11.75 15L20.71 6.04C21.1 5.65 21.1 5 20.71 4.63Z"/>
+          <path d="M9 12.25L6.75 10L4.5 12.25L6.75 14.5L9 12.25Z"/>
+          <path d="M11.75 15L9.5 17.25L11.75 19.5L14 17.25L11.75 15Z"/>
+        </svg>
+        <span class="tool-label">Brush</span>
+      </button>
+
+      <!-- Eraser Button -->
+      <button id="eraser" class="tool-btn" title="Eraser">
+        <svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 21L15 15M9 9L3 3M21 9L15 3M9 21L3 15M21 3L15 9M9 3L3 9"/>
+        </svg>
+        <span class="tool-label">Eraser</span>
+      </button>
+
+      <!-- Color Picker -->
+      <div class="color-picker-wrapper">
+        <label for="color" class="color-label">
+          <svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="13.5" cy="6.5" r=".5"/>
+            <circle cx="17.5" cy="10.5" r=".5"/>
+            <circle cx="8.5" cy="7.5" r=".5"/>
+            <circle cx="6.5" cy="12.5" r=".5"/>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.75-.1 2.5-.3"/>
+            <path d="M22 12c0-5.5-4.5-10-10-10"/>
+          </svg>
+          <span class="tool-label">Color</span>
+        </label>
+        <input id="color" type="color" value="#2563eb" class="color-input">
+        <div class="color-preview" id="color-preview"></div>
+      </div>
+
+      <!-- Stroke Width Slider -->
+      <div class="slider-wrapper">
+        <label for="stroke-width" class="slider-label">
+          <svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <span class="tool-label">Size</span>
+        </label>
+        <div class="slider-container">
+          <input id="stroke-width" type="range" min="1" max="20" value="5" class="stroke-slider">
+          <div class="size-preview" id="size-preview"></div>
+        </div>
+      </div>
+
+      <!-- Undo Button -->
+      <button id="undo" class="tool-btn" title="Undo">
+        <svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 7V5a2 2 0 0 1 2-2h2M7 7h10.59a2 2 0 0 1 1.414.586l4.707 4.707a2 2 0 0 1 0 2.828l-4.707 4.707a2 2 0 0 1-1.414.586H7M7 7l-4 4m4-4l4 4"/>
+        </svg>
+        <span class="tool-label">Undo</span>
+      </button>
+
+      <!-- Redo Button -->
+      <button id="redo" class="tool-btn" title="Redo">
+        <svg class="tool-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 7V5a2 2 0 0 0-2-2h-2M15 7H4.41a2 2 0 0 0-1.414.586l-4.707 4.707a2 2 0 0 0 0 2.828l4.707 4.707a2 2 0 0 0 1.414.586H15M15 7l4 4m-4-4l-4 4"/>
+        </svg>
+        <span class="tool-label">Redo</span>
+      </button>
+    </div>
+
+    <!-- Canvas Container -->
+    <div class="canvas-container">
+      <canvas id="drawing-canvas" width="1200" height="700"></canvas>
+    </div>
+  </main>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
